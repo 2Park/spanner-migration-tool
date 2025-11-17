@@ -409,10 +409,11 @@ func (isi InfoSchemaImpl) GetIndexes(conv *internal.Conv, table common.SchemaAnd
 		iter = isi.Client.Single().Query(isi.Ctx, stmt)
 	}
 	defer iter.Stop()
-	var name, column, ordering string
+	var name, column string
+	var ordering spanner.NullString
 	var isUnique bool
 	var isPgUnique string
-	var sequence int64
+	var sequence spanner.NullInt64
 	indexMap := make(map[string]schema.Index)
 	var indexNames []string
 	var indexes []schema.Index
@@ -452,7 +453,7 @@ func (isi InfoSchemaImpl) GetIndexes(conv *internal.Conv, table common.SchemaAnd
 		index := indexMap[name]
 		index.Keys = append(index.Keys, schema.Key{
 			ColId: colNameIdMap[column],
-			Desc:  (ordering == "DESC")})
+			Desc:  (ordering.Valid && ordering.StringVal == "DESC")})
 		indexMap[name] = index
 	}
 	for _, k := range indexNames {

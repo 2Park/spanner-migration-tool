@@ -19,7 +19,6 @@ package main
 
 import (
 	"context"
-	"embed"
 	"flag"
 	"fmt"
 	"os"
@@ -31,12 +30,9 @@ import (
 
 	"github.com/GoogleCloudPlatform/spanner-migration-tool/cmd"
 	"github.com/GoogleCloudPlatform/spanner-migration-tool/common/utils"
-	"github.com/GoogleCloudPlatform/spanner-migration-tool/webv2"
 	"github.com/google/subcommands"
 )
 
-//go:embed ui/dist/ui/*
-var distDir embed.FS
 
 func main() {
 	ctx := context.Background()
@@ -54,7 +50,6 @@ func main() {
 	subcommands.Register(&cmd.SchemaAndDataCmd{}, "")
 	subcommands.Register(&cmd.CleanupCmd{}, "")
 	subcommands.Register(&cmd.AssessmentCmd{}, "")
-	subcommands.Register(&webv2.WebCmd{DistDir: distDir}, "")
 	subcommands.Register(&cmd.ImportDataCmd{}, "")
 	flag.Parse()
 	os.Exit(int(subcommands.Execute(ctx)))

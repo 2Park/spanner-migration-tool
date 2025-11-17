@@ -289,7 +289,6 @@ func handleTableNameDefaults(tableName, sourceUri string) string {
 }
 
 func sanitizeTableName(tableName string) string {
-	tableName = strings.ToLower(tableName)
 	underscoreOrAlphabet := func(r rune) bool {
 		return !(unicode.IsLetter(r) || r == '_')
 	}

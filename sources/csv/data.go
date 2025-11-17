@@ -292,15 +292,16 @@ func convertData(dialect, nullStr string, srcCols []string,
 	var cvtCols []string
 
 	for i, val := range values {
-		if val == nullStr {
-			continue
-		}
 		colName := srcCols[i]
 		colId, err := internal.GetColIdFromSpName(colDefs, colName)
 		if err != nil {
 			return cvtCols, v, fmt.Errorf("Unable to get colId from SpName for column %s ", colName)
 		}
 		spColDef := colDefs[colId]
+
+		if val == nullStr && spColDef.NotNull == false {
+			continue
+		}
 
 		var x interface{}
 		if spColDef.T.IsArray {
@@ -584,10 +585,12 @@ func convNumeric(val string) (big.Rat, error) {
 }
 
 func convTimestamp(val string) (t time.Time, err error) {
-	t, err = time.Parse("2006-01-02 15:04:05", val)
-	if err != nil {
-		return t, fmt.Errorf("can't convert to timestamp: %s", val)
-	}
+    nanos, err := strconv.ParseInt(val, 10, 64)
+    if err != nil {
+        return t, fmt.Errorf("can't parse timestamp: %w", err)
+    }
+    t = time.Unix(0, nanos)
+
 	return t, err
 }
 

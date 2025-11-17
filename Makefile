@@ -5,8 +5,7 @@ ifndef $(GOPATH)
     export GOPATH
 endif
 # Build the default binary
-build: ui/package-lock.json
-	cd ui/ && npm install --from-lock-file && ng build
+build:
 	go build -o spanner-migration-tool
 # Build a static binary
 build-static: ui/package-lock.json

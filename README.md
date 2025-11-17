@@ -1,3 +1,29 @@
+# Autopay fork of spanner-migration-tool
+
+This is the Autopay fork of the spanner-migration-tool repository. It contains some necessary changes/fixes for our needs.
+For a list of changes that have been made see the following PRs:
+
+* \<Insert PR Here>
+
+If all these issues are resolved upstream, it is a stated goal to delete this fork and use the upstream version instead.
+
+To build the binary locally, follow these steps, adapted from the "Documentation" section of the normal README:
+
+* You need Go 1.24.10 installed and available in path.
+* Normal C build dependencies should be available as well: gcc, g++
+* Run:
+
+```bash
+  go build -o spanner-migration-tool
+```
+
+# Import
+The tables MUST be setup prior to running the import tool. Either by running liquibase or using the "Copy DDL" button from an equivalent database.
+
+The ./run-import script shows one way to batch import tables. The spanner-migration-tool can also be run manually on individual tables (again, see run-import.sh for example use).
+
+Normal README to follow:
+
 # Spanner migration tool: Spanner Evaluation and Migration
 
 [![integration-tests-against-emulator](https://github.com/GoogleCloudPlatform/spanner-migration-tool/actions/workflows/integration-tests-against-emulator.yaml/badge.svg)](https://github.com/GoogleCloudPlatform/spanner-migration-tool/actions/workflows/integration-tests-against-emulator.yaml) [![code-coverage-check](https://github.com/GoogleCloudPlatform/spanner-migration-tool/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/GoogleCloudPlatform/spanner-migration-tool/actions/workflows/test-coverage.yaml) [![codecov](https://codecov.io/gh/GoogleCloudPlatform/spanner-migration-tool/graph/badge.svg?token=HY9RCUlxzm)](https://codecov.io/gh/GoogleCloudPlatform/spanner-migration-tool)

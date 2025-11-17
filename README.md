@@ -18,7 +18,7 @@ To build the binary locally, follow these steps, adapted from the "Documentation
 ```
 
 # Import
-The tables MUST be setup prior to running the import tool. Either by running liquibase or using the "Copy DDL" button from an equivalent database.
+The tables MUST be setup prior to running the import tool. Either by running liquibase or using the "Show equivalent ddl" button from an equivalent database in GCP (on the page where you see a list of tables).
 
 The ./run-import script shows one way to batch import tables. The spanner-migration-tool can also be run manually on individual tables (again, see run-import.sh for example use).
 

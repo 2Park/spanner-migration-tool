@@ -1,9 +1,9 @@
 # Autopay fork of spanner-migration-tool
 
 This is the Autopay fork of the spanner-migration-tool repository. It contains some necessary changes/fixes for our needs.
-For a list of changes that have been made see the following PRs:
+For a list of changes that have been made see the commits in the following PRs:
 
-* \<Insert PR Here>
+* https://github.com/2Park/spanner-migration-tool/pull/1
 
 If all these issues are resolved upstream, it is a stated goal to delete this fork and use the upstream version instead.
 
